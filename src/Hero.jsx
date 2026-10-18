@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom"
 import Orbit from "./components/Orbit"
 import HeroCarousel from "./components/HeroCarousel";
 
@@ -86,9 +87,9 @@ function Hero()
     Get Started
   </span>
 
-  <span className="bg-gray-400 text-black rounded-full w-8 h-8 flex items-center justify-center">
+  <Link to="/login" className="bg-gray-400 text-black rounded-full w-8 h-8 flex items-center justify-center">
     <img src={Tick} alt="right-arrow" className="w-full h-full object-contain p-2" />
-  </span>
+  </Link>
 </button>
     </div>
 
@@ -131,9 +132,9 @@ function Hero()
     Get Started
   </span>
 
-  <span className="bg-gray-400 text-black rounded-full w-8 h-8 flex items-center justify-center">
+  <Link to="/login" className="bg-gray-400 text-black rounded-full w-8 h-8 flex items-center justify-center">
     <img src={Tick} alt="right-arrow" className="w-full h-full object-contain p-2" />
-  </span>
+  </Link>
 </button>
     </div>
      <div className="mt-23">
