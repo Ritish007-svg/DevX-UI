@@ -127,7 +127,7 @@ function Hero()
       Join the waitlist and be the first to swipe
       </h2>
 
-      <button className="mt-6 bg-black text-white rounded-3xl pl-6 pr-2 py-2 flex items-center justify-between w-48 cursor-pointer">
+      <button className="mt-25 bg-black text-white rounded-3xl pl-6 pr-2 py-2 flex items-center justify-between w-48 cursor-pointer">
   <span className="text-xl font-[borel] leading-none pt-3">
     Get Started
   </span>

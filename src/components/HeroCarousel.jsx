@@ -24,7 +24,8 @@ const wrap = (min, max, v) => {
   return ((((v - min) % range) + range) % range) + min;
 };
 
-function CarouselItem({ card, index, total, progress }) {
+// function CarouselItem({ card, index, total, progress }) {
+function CarouselItem({ card, index, total, progress, onPause, onResume }) {
   // Signed distance from center: 0 = center, negative = left, positive = right
   const pos = useTransform(progress, (p) =>
     wrap(-total / 2, total / 2, index - p)
@@ -41,9 +42,10 @@ function CarouselItem({ card, index, total, progress }) {
     [0, 1, 1, 0]
   );
 
-  return (
+   return (
     <motion.div
-      className="absolute"
+      // CHANGED: added cursor-pointer so the cursor becomes a hand over a card (Step 3)
+      className="absolute cursor-pointer"
       style={{
         left: "50%",
         top: "50%",
@@ -54,8 +56,24 @@ function CarouselItem({ card, index, total, progress }) {
         rotateY,
         opacity,
       }}
+      // NEW: while the mouse is over this card, it is "in the hover state"
+      // and the inner wrapper below can react to that
+      whileHover="hover"
+      // NEW: pause the carousel when the mouse enters this card
+      onHoverStart={onPause}
+      // NEW: start the carousel again when the mouse leaves this card
+      onHoverEnd={onResume}
     >
-      <HeroCard {...card} />
+      {/* NEW: inner wrapper that does the lifting. The outer box stays still,
+          so the card never flickers when the mouse is near its bottom edge */}
+      <motion.div
+        // NEW: when the parent is in the "hover" state, move up 24px
+        variants={{ hover: { y: -24 } }}
+        // NEW: spring motion, so the lift feels smooth and natural
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      >
+        <HeroCard {...card} />
+      </motion.div>
     </motion.div>
   );
 }
@@ -88,23 +106,32 @@ function HeroCarousel({ cards }) {
     return () => controlsRef.current?.stop();
   }, [total, progress, reduceMotion]);
 
+  // NEW: pauses the carousel animation (called when the mouse enters a card)
+const pause = () => controlsRef.current?.pause();
+
+// NEW: resumes the animation (called when the mouse leaves a card)
+const resume = () => controlsRef.current?.play();
   return (
-    <motion.div
-      className="relative w-full overflow-x-clip "
-      style={{ height: CARD_H * 1.4, perspective: 1200 }}
-      onHoverStart={() => controlsRef.current?.pause()}
-      onHoverEnd={() => controlsRef.current?.play()}
-    >
-      {items.map((card, index) => (
-        <CarouselItem
-          key={index}
-          card={card}
-          index={index}
-          total={total}
-          progress={progress}
-        />
-      ))}
-    </motion.div>
+  <motion.div
+  className="relative w-full overflow-x-clip "
+  style={{ height: CARD_H * 1.4, perspective: 1200 }}
+  // CHANGED: removed the onHoverStart / onHoverEnd that were here,
+  // so the strip no longer pauses when the mouse is on empty space
+>
+  {items.map((card, index) => (
+    <CarouselItem
+      key={index}
+      card={card}
+      index={index}
+      total={total}
+      progress={progress}
+      // NEW: hand the pause function down to each card
+      onPause={pause}
+      // NEW: hand the resume function down to each card
+      onResume={resume}
+    />
+  ))}
+</motion.div>
   );
 }
 

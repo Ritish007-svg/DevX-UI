@@ -46,9 +46,9 @@ function Footer() {
           {/* Row 2: links */}
           <div className="flex justify-between border-y border-[#FFF9ED]/15 py-6 mt-10 text-xs uppercase tracking-widest">
             <a href="https://github.com/Ritish007-svg" target="_blank" rel="noreferrer" className="hover:underline underline-offset-4">GitHub</a>
-            <a href="https://your-portfolio.com" target="_blank" rel="noreferrer" className="hover:underline underline-offset-4">Portfolio</a>
+            <a href="https://leetcode.com/u/Ay3T1VcTP0/" target="_blank" rel="noreferrer" className="hover:underline underline-offset-4">LeetCode</a>
             <a href="https://www.linkedin.com/in/ritish-karmakar-625532376/?isSelfProfile=true" target="_blank" rel="noreferrer" className="hover:underline underline-offset-4">LinkedIn</a>
-            <a href="kritish2803@gmail.com" className="hover:underline underline-offset-4">Email</a>
+            <a href="https://x.com/RitishKarmady" target="_blank" rel="noreferrer" className="hover:underline underline-offset-4">X.com</a>
           </div>
 
           {/* Row 3: copyright, logo, credit */}
