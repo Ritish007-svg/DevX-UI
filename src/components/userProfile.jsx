@@ -93,6 +93,7 @@ const EditProfileForm = ({ user }) => {
           {/* ROW 1, LEFT: the photo box */}
           <div className="order-1 h-96 w-full overflow-hidden rounded-[28px] border-4 border-black bg-neutral-900">
             <img
+             key={formData.photoUrl + formData.gender}
               src={getAvatar(formData)}
               alt="profile preview"
               onError={(e) => {

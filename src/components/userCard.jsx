@@ -9,6 +9,7 @@ const UserCard = ({ user,onSend }) => {
       {/* photo fills the whole card */}
      <img
   // unchanged: the photo to show
+    key={user.photoUrl + user.gender}
   src={getAvatar(user)}
   // unchanged: text shown if the image can't load
   alt={user.firstName}

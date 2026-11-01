@@ -6,8 +6,7 @@ import BASE_URL from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { removeUser } from "../utils/UserSlice";
 import { useSelector } from "react-redux";
-import getAvatar from "../utils/getAvatar";
-
+import getAvatar, { getDefaultAvatar } from "../utils/getAvatar";
 
 
 // Common style for every link (the black pill is drawn separately, see below)
@@ -117,10 +116,18 @@ const Body = () => {
   {user?.photoUrl ? (
     // ADDED: the user's photo; object-cover fills the circle without stretching
     <img
-      src={getAvatar(user)}
-      alt="profile"
-      className="h-full w-full object-cover"
-    />
+     key={user.photoUrl + user.gender}
+  src={getAvatar(user)}
+  alt="profile"
+  // ADDED: if the photo link is broken, swap in the gender default
+  onError={(e) => {
+    // ADDED: stops an endless retry if the default also fails
+    e.currentTarget.onerror = null;
+    // ADDED: replace the broken image with the gender default
+    e.currentTarget.src = getDefaultAvatar(user);
+  }}
+  className="h-full w-full object-cover"
+/>
   ) : (
     // MOVED: your old icon is unchanged, it's now the fallback
     <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor">
