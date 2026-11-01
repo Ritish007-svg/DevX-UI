@@ -5,6 +5,9 @@ import axios from "axios";
 import BASE_URL from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { removeUser } from "../utils/UserSlice";
+import { useSelector } from "react-redux";
+import getAvatar from "../utils/getAvatar";
+
 
 
 // Common style for every link (the black pill is drawn separately, see below)
@@ -15,6 +18,7 @@ const Body = () => {
   const dispatch=useDispatch();
   // Tracks whether the profile dropdown is open or closed
   const [open, setOpen] = useState(false);
+  const user=useSelector((store)=>store.user);
 
   // Used to move the user to another page after logout
   const navigate = useNavigate();
@@ -104,16 +108,27 @@ const Body = () => {
           {/* PROFILE: black circle on the right, click it to open or close the dropdown */}
           <div className="relative">
             {/* PROFILE BUTTON: swap the icon for <img src={user.photoUrl} /> when you have the user data */}
-            <button
-              onClick={() => setOpen(!open)}
-              className="grid h-11 w-11 place-items-center rounded-full bg-black text-[#fff8ee]"
-            >
-              <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor">
-                <circle cx="12" cy="8" r="4" />
-                <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z" />
-              </svg>
-            </button>
-
+           <button
+  onClick={() => setOpen(!open)}
+  // CHANGED: added overflow-hidden so the photo gets clipped into the round shape
+  className="grid h-11 w-11 place-items-center overflow-hidden rounded-full bg-black text-[#fff8ee] cursor-pointer"
+>
+  {/* ADDED: if the user has a photoUrl, show the photo, otherwise show the icon */}
+  {user?.photoUrl ? (
+    // ADDED: the user's photo; object-cover fills the circle without stretching
+    <img
+      src={getAvatar(user)}
+      alt="profile"
+      className="h-full w-full object-cover"
+    />
+  ) : (
+    // MOVED: your old icon is unchanged, it's now the fallback
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor">
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z" />
+    </svg>
+  )}
+</button>
             {/* DROPDOWN: only shows when open is true */}
             {open && (
               <div className="absolute right-0 top-14 z-50 w-48 rounded-2xl border-[1.5px] border-black bg-[#fff8ee] p-2 text-lg font-bold">

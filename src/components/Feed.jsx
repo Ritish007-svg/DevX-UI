@@ -79,12 +79,6 @@ const STATUS_MAP = {
           {/* NEW: AnimatePresence lets the removed card play its exit animation */}
           <AnimatePresence custom={exitDir}>
             {cards.map((user, index) => (
-              // <SwipeableCard
-              //   key={user._id}
-              //   pos={index}
-              //   exitDir={exitDir}
-              //   onSwipe={(status) => handleSend(status, user._id)}
-              // >
               <SwipeableCard
                 key={user._id}
                 pos={index}

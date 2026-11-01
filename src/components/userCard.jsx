@@ -1,3 +1,5 @@
+import getAvatar,{getDefaultAvatar} from "../utils/getAvatar";
+
 const UserCard = ({ user,onSend }) => {
   const skills = user.skills ?? [];
   const extra = skills.length - 3;
@@ -5,11 +7,21 @@ const UserCard = ({ user,onSend }) => {
   return (
     <div className="relative h-160 w-100 flex justify-center overflow-hidden rounded-[32px] bg-neutral-900 border-4 border-amber-50">
       {/* photo fills the whole card */}
-      <img
-        src={user.photoUrl}
-        alt={user.firstName}
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+     <img
+  // unchanged: the photo to show
+  src={getAvatar(user)}
+  // unchanged: text shown if the image can't load
+  alt={user.firstName}
+  // ADDED: the browser runs this function only when the image fails to load
+  onError={(e) => {
+    // ADDED: if the default also fails, don't try again forever
+    e.currentTarget.onerror = null;
+    // ADDED: replace the broken image with the gender-based default
+    e.currentTarget.src = getDefaultAvatar(user);
+  }}
+  // unchanged: styling
+  className="absolute inset-0 h-full w-full object-cover"
+/>
 
       {/* dark fade so the white text is readable */}
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
