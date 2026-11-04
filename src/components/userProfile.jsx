@@ -40,6 +40,16 @@ const EditProfileForm = ({ user }) => {
 
   const saveProfile = async () => {
     seterror("");
+      // ADDED: stops the save if any single skill is longer than 20 characters (usually means commas are missing)
+if (previewUser.skills.some((s) => s.length > 15)) {
+  seterror("Each skill can be up to 15 characters. Separate skills with commas.");
+  return;
+}
+// ADDED: stops the save if there are more than 10 skills
+if (previewUser.skills.length > 10) {
+  seterror("You can add up to 10 skills.");
+  return;
+}
     try {
       const res = await axios.patch(
         BASE_URL + "/profile/update",
@@ -60,6 +70,8 @@ const EditProfileForm = ({ user }) => {
       );
     }
   };
+
+
 
   return (
     // OUTER: "relative" so the toast can be placed inside it, pt-24 leaves room for the toast
