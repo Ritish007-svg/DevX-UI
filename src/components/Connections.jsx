@@ -39,7 +39,7 @@ const Connections = () => {
         <h1 className={`${HEADING} text-4xl leading-tight text-[#fff8ee] md:text-5xl`}>
           Your Dev Crew
         </h1>
-        <p className={`${BODY} mt-3 text-xl text-[#fff8ee]/60 md:text-2xl`}>
+        <p className={`${BODY} mt-10 text-2xl text-[#fff8ee]/60 md:text-2xl`}>
           Devs who said yes. Time to build something together.
         </p>
       </div>

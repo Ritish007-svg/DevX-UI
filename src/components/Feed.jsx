@@ -5,7 +5,7 @@ import axios from "axios";
 import BASE_URL from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { showFeed } from "../utils/FeedSlice";
-import { useEffect, useState } from "react"; // NEW: useState
+import { useEffect, useRef, useState } from "react"; // NEW: useState
 
 import UserCard from "./userCard";
 import EmptyFeed from "./EmptyFeed";
@@ -23,20 +23,8 @@ const Feed = () => {
   const feed = useSelector((store) => store.feed);
   const [exitDir, setExitDir] = useState("interested"); // NEW
   const [feedback, setFeedback] = useState(null); // NEW
+  const exhausted = useRef(false); // true once the server has no more users
 
-  const getFeed = async () => {
-    if (feed) {
-      return;
-    }
-    try {
-      const res = await axios.get(BASE_URL + "/users/feed?page=1&limit=10", {
-        withCredentials: true,
-      });
-      dispatch(showFeed(res.data));
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
 
   // NEW: translates the words used in the UI into the exact spelling the backend accepts
 const STATUS_MAP = {
@@ -64,12 +52,29 @@ const STATUS_MAP = {
   };
 
   useEffect(() => {
+    // Cards left: nothing to do, and a later empty feed may fetch again
+    if (feed && feed.length > 0) {
+      exhausted.current = false;
+      return;
+    }
+    // Server already returned nothing new: stop, otherwise we'd loop forever
+    if (feed && exhausted.current) return;
+    const getFeed = async () => {
+      try {
+        // Swiped users are excluded by the backend, so page 1 is always the next batch
+        const res = await axios.get(BASE_URL + "/users/feed?page=1&limit=10", {
+          withCredentials: true,
+        });
+        if (res.data.length === 0) exhausted.current = true;
+        dispatch(showFeed(res.data));
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
     getFeed();
-  }, []);
+  }, [feed, dispatch]);
 
-  if (!feed) return null;
-
-  const cards = feed.slice(0, 3);
+  const cards = (feed ?? []).slice(0, 3);
 
   return (
     <>
@@ -92,7 +97,7 @@ const STATUS_MAP = {
           </AnimatePresence>
 
           {/* NEW: moved inside so the last card can still animate out */}
-          {feed.length === 0 && (
+          {feed?.length === 0 && (
             <EmptyFeed/>
           )}
         </div>
