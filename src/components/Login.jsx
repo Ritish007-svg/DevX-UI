@@ -1,5 +1,5 @@
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoginImg from "../../images/Login.png";
 import { useState } from "react";
 import axios from "axios";
@@ -12,6 +12,7 @@ function Login() {
   const [emailId, setemailId] = useState("");
   const [error, setError] = useState("");
   const [firstName, setfirstName] = useState("");
+  const [gender, setGender] = useState("male"); // used on signup so the right default avatar is shown
   // This flag is the heart of the toggle: true = login mode, false = signup mode
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [password, setpassword] = useState("");
@@ -53,6 +54,7 @@ function Login() {
         BASE_URL + "/signup",
         {
           firstName,
+          gender,
           emailId,
           password,
         },
@@ -63,7 +65,7 @@ function Login() {
       // Works only if your signup route also sets the cookie and returns the user.
       // If it doesn't, navigate to the login mode instead of /feed.
       dispatch(addUser(result.data));
-      navigate("/feed");
+      navigate("/profile");
     } catch (err) {
       // CHANGED: same safe error read as handleLogin
       setError(err.response?.data?.message);
@@ -81,6 +83,14 @@ function Login() {
       <section className="min-h-screen bg-[#FFF9ED] flex">
         <div className="flex-1 bg-black flex flex-col justify-center px-30">
           <div className="w-full max-w-xl ">
+            {/* Way back to the hero/landing page */}
+            <Link
+              to="/"
+              className="mb-10 inline-block font-[borel] text-2xl text-[#FFF9ED]/60 hover:text-[#FFF9ED]"
+            >
+              ← Back to home
+            </Link>
+
             {/* CHANGED: heading text depends on the mode */}
             <h1 className="font-[Sedan_SC]  text-[#FFF9ED] text-5xl">
               {isLoginForm ? "Welcome Back" : "Join DevX"}
@@ -113,6 +123,20 @@ function Login() {
                   onChange={(e) => setfirstName(e.target.value)}
                   className="mt-2 w-full h-12 rounded-xl bg-white/10 border border-white/20 px-4 text-[#FFF9ED] placeholder:text-[#FFF9ED]/40 outline-none focus:border-[#FFF9ED]/60"
                 />
+
+                <label htmlFor="gender" className="block text-sm font-medium text-[#FFF9ED] mt-8">
+                  Gender
+                </label>
+                <select
+                  id="gender"
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                  className="mt-2 w-full h-12 rounded-xl bg-white/10 border border-white/20 px-4 text-[#FFF9ED] outline-none focus:border-[#FFF9ED]/60"
+                >
+                  <option value="male" className="text-black">Male</option>
+                  <option value="female" className="text-black">Female</option>
+                  <option value="others" className="text-black">Others</option>
+                </select>
               </>
             )}
 

@@ -37,8 +37,8 @@ function Footer() {
 
             <div className="text-right text-sm text-[#FFF9ED]/70 leading-relaxed">
               <p className="text-xs uppercase tracking-widest text-[#FFF9ED]">Contact</p>
-              <a href="mailto:your@email.com" className="hover:underline underline-offset-4">
-                kritish2803@email.com
+              <a href="mailto:kritish2803@gmail.com" className="hover:underline underline-offset-4">
+                kritish2803@gmail.com
               </a>
             </div>
           </div>

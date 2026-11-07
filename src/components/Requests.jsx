@@ -76,7 +76,7 @@ const Requests = () => {
         </p>
       )}
 
-      <div className="flex w-full flex-col gap-5">
+      <div className="flex w-full flex-col gap-10">
         {(requests || []).map((r) => {
           // backend populates the sender as fromUserId
           const u = r.fromUserId ?? r.fromUser ?? r;

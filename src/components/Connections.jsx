@@ -54,7 +54,7 @@ const Connections = () => {
         </p>
       )}
 
-      <div className="mx-auto flex w-full flex-wrap justify-between gap-8">
+      <div className="mx-auto grid w-full grid-cols-[repeat(auto-fit,min(24rem,100%))] justify-center gap-8 ">
         {(connections || []).map((u) => {
           const skills = getSkills(u.skills);
           return (

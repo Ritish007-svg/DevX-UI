@@ -5,6 +5,8 @@ import axios from "axios";
 import BASE_URL from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { removeUser } from "../utils/UserSlice";
+import { removeFeed } from "../utils/FeedSlice";
+import { clearRequests } from "../utils/requestSlice";
 import { useSelector } from "react-redux";
 import getAvatar, { getDefaultAvatar } from "../utils/getAvatar";
 
@@ -33,6 +35,8 @@ const Body = () => {
       );
     
       dispatch(removeUser());
+      dispatch(removeFeed());
+      dispatch(clearRequests());
       navigate("/login");
    }
    catch(err)
