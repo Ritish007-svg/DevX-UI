@@ -10,7 +10,7 @@ function HeroCard({image,name,skills,role})
            {/* Black gradient overlay */}
            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent">
            <div className="flex justify-between">
-           <div className="flex flex-col absolute bottom-5 left-6 ">
+           <div className="flex flex-col absolute bottom-5 left-6 text-[#FFF9ED]">
               <h2 className="text-xl font-[borel]">
                 {name}
               </h2>
