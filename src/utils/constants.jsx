@@ -1,2 +1,2 @@
-const BASE_URL="http://localhost:3213";
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3213";
 export default BASE_URL;
