@@ -19,25 +19,25 @@ const developers = [
     image: Person1,
     name: "Anny Foe",
     role: "Frontend Dev",
-    skills: "React â€¢ Tailwind ",
+    skills: "React • Tailwind ",
   },
   {
     image: Person2,
     name: "Jessica Sans",
     role: "Backend Dev",
-    skills: "Node.js â€¢ Express",
+    skills: "Node.js • Express",
   },
   {
     image: Person3,
     name: "Rakesh Singh",
     role: "AI Engineer",
-    skills: "Python â€¢ ML",
+    skills: "Python • ML",
   },
   {
     image: Person4,
     name: "Ram Kumar",
     role: "UI/UX Designer",
-    skills: "Figma â€¢ Adobe",
+    skills: "Figma • Adobe",
   },
   {
     image: Person5,
@@ -49,13 +49,13 @@ const developers = [
     image: Person6,
     name: "Alexis Sanchez",
     role: "CyberSecurity",
-    skills: "Networking â€¢ OS",
+    skills: "Networking • OS",
   },
   {
     image: Person7,
     name: "Emma Watson",
     role: "MERN Dev",
-    skills: "React â€¢ NodeJS",
+    skills: "React • NodeJS",
   },
 ];
 

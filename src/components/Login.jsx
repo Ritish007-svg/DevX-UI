@@ -88,7 +88,7 @@ function Login() {
               to="/"
               className="mb-10 inline-block font-[borel] text-2xl text-[#FFF9ED]/60 hover:text-[#FFF9ED]"
             >
-              â† Back to home
+              ← Back to home
             </Link>
 
             {/* CHANGED: heading text depends on the mode */}
