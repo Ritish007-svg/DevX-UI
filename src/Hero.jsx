@@ -2,14 +2,14 @@ import {Link} from "react-router-dom"
 import Orbit from "./components/Orbit"
 import HeroCarousel from "./components/HeroCarousel";
 
-import Person1 from "../images/Person1.png";
-import Person2 from "../images/Person2.png";
-import Person3 from "../images/Person3.png";
-import Person4 from "../images/Person4.png";
-import Person5 from "../images/Person5.png";
-import Person6 from "../images/Person6.png";
-import Person7 from "../images/Person7.png";
-import Tick from "../images/right-arrow.png"
+const Person1 = "/images/Person1.png";
+const Person2 = "/images/Person2.png";
+const Person3 = "/images/Person3.png";
+const Person4 = "/images/Person4.png";
+const Person5 = "/images/Person5.png";
+const Person6 = "/images/Person6.png";
+const Person7 = "/images/Person7.png";
+const Tick = "/images/right-arrow.png";
 
 import HeroFeatures from "./components/HeroFeatures";
 import Footer from "./components/HeroFooter"
@@ -19,25 +19,25 @@ const developers = [
     image: Person1,
     name: "Anny Foe",
     role: "Frontend Dev",
-    skills: "React • Tailwind ",
+    skills: "React â€¢ Tailwind ",
   },
   {
     image: Person2,
     name: "Jessica Sans",
     role: "Backend Dev",
-    skills: "Node.js • Express",
+    skills: "Node.js â€¢ Express",
   },
   {
     image: Person3,
     name: "Rakesh Singh",
     role: "AI Engineer",
-    skills: "Python • ML",
+    skills: "Python â€¢ ML",
   },
   {
     image: Person4,
     name: "Ram Kumar",
     role: "UI/UX Designer",
-    skills: "Figma • Adobe",
+    skills: "Figma â€¢ Adobe",
   },
   {
     image: Person5,
@@ -49,13 +49,13 @@ const developers = [
     image: Person6,
     name: "Alexis Sanchez",
     role: "CyberSecurity",
-    skills: "Networking • OS",
+    skills: "Networking â€¢ OS",
   },
   {
     image: Person7,
     name: "Emma Watson",
     role: "MERN Dev",
-    skills: "React • NodeJS",
+    skills: "React â€¢ NodeJS",
   },
 ];
 

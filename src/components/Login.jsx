@@ -1,6 +1,6 @@
 
 import { Link, useNavigate } from "react-router-dom";
-import LoginImg from "../../images/Login.png";
+const LoginImg = "/images/Login.png";
 import { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -88,7 +88,7 @@ function Login() {
               to="/"
               className="mb-10 inline-block font-[borel] text-2xl text-[#FFF9ED]/60 hover:text-[#FFF9ED]"
             >
-              ← Back to home
+              â† Back to home
             </Link>
 
             {/* CHANGED: heading text depends on the mode */}

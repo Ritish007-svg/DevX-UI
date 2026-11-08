@@ -1,5 +1,5 @@
-import Person1 from "../../images/Person1.png";
-import Person7 from "../../images/Person7.png";
+const Person1 = "/images/Person1.png";
+const Person7 = "/images/Person7.png";
 // NEW: motion lets us animate normal HTML tags like div
 import { motion } from "framer-motion";
 
@@ -53,7 +53,7 @@ function HeroFeatures() {
             <div className="flex flex-row items-end gap-6 mt-20">
               <div className="bg-[#FFF9ED]/10 rounded-2xl p-4 w-64 text-[#FFF9ED]">
                 <p className="text-sm text-[#FFF9ED]/60">New connection request</p>
-                <p className="font-[borel] text-xl mt-1">Anny Foe · React, Tailwind</p>
+                <p className="font-[borel] text-xl mt-1">Anny Foe Â· React, Tailwind</p>
                 <div className="flex gap-2 mt-3">
                   <span className="bg-[#FFF9ED] text-black text-sm rounded-full px-4 py-1">Accept</span>
                   <span className="border border-[#FFF9ED]/30 text-sm rounded-full px-4 py-1">Ignore</span>
@@ -62,7 +62,7 @@ function HeroFeatures() {
 
               <button className="bg-[#FFF9ED] text-black rounded-3xl pl-6 pr-2 py-2 flex items-center justify-between w-52 cursor-pointer">
                 <span className="font-[borel] text-xl">Find your match</span>
-                <span className="bg-black text-white rounded-full w-8 h-8 flex items-center justify-center">→</span>
+                <span className="bg-black text-white rounded-full w-8 h-8 flex items-center justify-center">â†’</span>
               </button>
             </div> {/* END: request card and button */}
 
@@ -95,10 +95,10 @@ function HeroFeatures() {
               {/* chat bubbles */}
               <div className="flex flex-col gap-2 ">
                 <p className="bg-[#FFF9ED]/10 text-[#FFF9ED] rounded-2xl rounded-bl-sm px-4 py-2 w-fit">
-                  Hey, saw you use Tailwind too 👋
+                  Hey, saw you use Tailwind too ðŸ‘‹
                 </p>
                 <p className="bg-[#FFF9ED] text-black rounded-2xl rounded-br-sm px-4 py-2 w-fit self-end">
-                  Yes! Want to team up? 🚀
+                  Yes! Want to team up? ðŸš€
                 </p>
               </div> {/* END: chat bubbles */}
             </div> {/* END: padded content */}

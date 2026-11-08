@@ -1,4 +1,4 @@
-import DanceCat from "../../images/dance-cat.gif";
+const DanceCat = "/images/dance-cat.gif";
 // imports motion, which gives us animated versions of div, ul, li, img, etc.
 import { motion } from "framer-motion";
 
